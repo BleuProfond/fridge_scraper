@@ -1,1 +1,6 @@
 <h1> Ingredients </h1>
+
+<% ingredients= Ingredient.all%>
+<% ingredients.each do |x| %>
+  <%= x.iname %>
+<% end %>

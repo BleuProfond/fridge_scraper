@@ -1,4 +1,8 @@
 # Homepage (Root path)
 get '/' do
-  erb :index
+  erb :'home_page'
+end
+
+get '/ingredients' do
+  erb :'ingredients'
 end

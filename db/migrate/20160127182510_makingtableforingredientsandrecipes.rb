@@ -1,7 +1,7 @@
 class Makingtableforingredientsandrecipes < ActiveRecord::Migration
   def change
     create_table :ingredients do |t|
-      t.string :ingredient
+      t.string :iname
     end
 
     create_table :recipes do |t|

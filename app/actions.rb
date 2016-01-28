@@ -10,7 +10,6 @@ end
 get '/bookmarks' do
   erb :'bookmarks'
 end
-
 get '/recipe/:id' do
   @recipe = Recipe.find(params[:id])
   erb :'recipe'

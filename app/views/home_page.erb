@@ -1,3 +1,10 @@
 <h1>Fridge Scraper</h1>
 <a href="/ingredients">Start</a>
+<% if current_user %>
+  <p>Welcome <%= current_user.email %>!</p>
+  <p>dont forget to <a href="/users/logout">Logout</a>!</p>
+<% else %>
+  <p><a href="/user/new"> Sign up</a> or <a href="/user/login">Login</a> to gain access to some benefits!
+<% end %>
+
 

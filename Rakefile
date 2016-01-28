@@ -24,3 +24,9 @@ end
 task 'console' do
   pry
 end
+
+desc "reset the database"
+task "db:reset" do
+  rm_f 'db/db.sqlite3'
+  touch 'db/db.sqlite3'
+end

@@ -30,16 +30,16 @@ ingredients.each do |x|
 end
 
 recipes = [
-  'chicken salad', 
-  'spaghetti', 
-  'chicken noodle soup', 
-  'sandwich', 
-  'vegtable dip',
-  'toast'
+  ['chicken salad', nil],
+  ['spaghetti', 'http://allrecipes.com/recipe/11715/easy-spaghetti-with-tomato-sauce/'],
+  ['chicken noodle soup', 'http://allrecipes.com/recipe/26460/quick-and-easy-chicken-noodle-soup/'],
+  ['sandwich', nil],  
+  ['vegtable dip', nil],
+  ['toast', nil]
 ]
 
-recipes.each do |y|
-  Recipe.create(recipe_name: y)
+recipes.each do |recipe_object|
+  Recipe.create(recipe_name: recipe_object[0], url: recipe_object[1])
 end
 
 User.create(email: 'example@example.com', password: '1234')

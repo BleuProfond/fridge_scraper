@@ -1,0 +1,10 @@
+<h1>Recipe results</h1>
+ <% @recipes.each do |recipe| %>
+
+  <div class='results_tabs'>
+    <h3><%= recipe.recipe_name %></h3>
+    <form method='get' action="/recipe/:id">
+      <input type='submit' value='View'>
+    </form>
+  </div>
+<% end %>

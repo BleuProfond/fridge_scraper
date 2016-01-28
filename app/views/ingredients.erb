@@ -4,8 +4,11 @@
 <h6> this app assumes u have salt, pepper and water on hand</h6>
 
 <% ingredients = Ingredient.all %>
-<% ingredients.each do |ingredient| %>
-  <form action = "">
-    <input type="checkbox" name="ingredient" value="<% ingredient %>"><%= ingredient.iname %><br>
-  </form>
-<% end %>
+  
+
+<form method='get' action="/results">
+  <% ingredients.each do |ingredient| %>
+    <input type="checkbox" name="ingredient[]" value="<%= ingredient.id %>"><%= ingredient.ingredient_name %><br>
+  <% end %>
+  <input type="submit" value="Search"><br>
+</form>

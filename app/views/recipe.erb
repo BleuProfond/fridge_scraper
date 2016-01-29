@@ -10,9 +10,9 @@
 
 <h2>
 <% if !@recipe.url.nil? %>
-  <a href="<%= @recipe.url %>">link to original recipe </a>
+  <a href="<%= @recipe.url %>" target="_blank">link to original recipe </a>
 <% end %>
-<h2>
+</h2>
 
 <% if current_user %>
   <form method="post" action="/user/bookmarks/new">
@@ -21,6 +21,5 @@
   </form>
 <% end %> 
 
-<p><a href='/ingredients'>Back to ingredients list</a></p>
-
+<p><a href='/'>Back to Homepage</a> or <a href='/ingredients'>Back to ingredients list</a></p>
 

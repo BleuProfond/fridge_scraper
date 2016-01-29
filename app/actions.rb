@@ -20,8 +20,8 @@ get '/ingredients' do
   erb :'ingredients'
 end
 
-get '/users/bookmarks' do
-  erb :'/users/bookmarks'
+get '/user/bookmarks' do
+  erb :'/user/bookmarks'
 end
 get '/recipe/:id' do
   @recipe = Recipe.find(params[:id])
@@ -46,17 +46,35 @@ get '/user/new' do
   erb :'/user/new'
 end
 
-post '/users' do
+post '/user' do
   @user = User.create(params)
   if @user.save
     session[:user_id] = @user.id
     redirect '/'
   else
-    erb :'/users/new'
+    erb :'/user/new'
   end
 end
 
-get '/users/logout' do
+# Login
+get '/user/login' do
+  erb :'/user/login'
+end
+
+post '/user/login' do
+  email = params[:email]
+  password = params[:password]
+  user = User.find_by(email: email, password: password)
+  if user
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    session.delete(:user_id)
+    redirect '/user/login'
+  end
+end
+
+get '/user/logout' do
   session[:user_id] = nil
   redirect '/'
 end

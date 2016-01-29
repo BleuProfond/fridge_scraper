@@ -17,6 +17,7 @@ get '/' do
 end
 
 get '/ingredients' do
+  @ingredients = Ingredient.all
   erb :'ingredients'
 end
 
@@ -96,6 +97,35 @@ post '/user/add_ingredients' do
     redirect '/ingredients'
   else
     erb :'user/add_ingredients'
+  end
+end
+
+get '/user/add_recipes' do
+  if current_user
+    @ingredients = Ingredient.all
+    erb :'user/add_recipes'
+  else 
+    session[:error] = 'must be logged in to add recipes'
+    redirect '/user/login'
+  end
+end
+
+post '/user/add_recipes' do
+  @recipe = Recipe.new(
+    recipe_name: params[:recipe_name],
+    url: params[:url]
+    )
+  ingredients = params[:ingredient]
+
+  ingredients.each do |ingredient_id|
+    @recipe.ingredients << Ingredient.find(ingredient_id)
+  end
+
+
+  if @recipe.save
+    redirect '/'
+  else
+    erb :'user/add_recipes'
   end
 end
 

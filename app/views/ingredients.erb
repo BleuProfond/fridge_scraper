@@ -3,11 +3,11 @@
 <p>Please put a mark on all ingredients you wish to use or have on hand</p>
 <h6> this app assumes you have salt, pepper and water on hand</h6>
 
-<% ingredients = Ingredient.all %>
+
   
 
 <form method='get' action="/results">
-  <% ingredients.each do |ingredient| %>
+  <% @ingredients.each do |ingredient| %>
     <span>
       <div>
         <input type="checkbox" name="ingredient[]" value="<%= ingredient.id %>" id="<%= ingredient.id %>"><label for="<%= ingredient.id %>"><%= ingredient.ingredient_name %></label><br>

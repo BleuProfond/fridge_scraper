@@ -2,6 +2,10 @@ helpers do
   def current_user
     User.find(session[:user_id]) if session[:user_id]
   end
+
+  def bookmark_exist?(rec_id)
+    Bookmark.find_by_recipe_id(rec_id)#.where(user_id == current_user.id)
+  end
 end
 
 # Homepage (Root path)
@@ -102,6 +106,7 @@ end
 get '/user/bookmarks' do
   @user = current_user
   if @user
+    @del_bookmark = nil
     erb :'/user/bookmarks'
   else 
     session[:error] = 'must be logged in to see your bookmarks'
@@ -114,10 +119,19 @@ post '/user/bookmarks/new' do
   @user.bookmarks << Bookmark.create(user_id: @user.id, recipe_id: params[:bookmark].to_i)
   redirect '/user/bookmarks'
 end
-# post '/results' do
-#   erb :'search_result'
-# end
 
+get '/user/bookmarks/delete' do
+  @user = current_user
+  @del_bookmark = Bookmark.find(params[:bookmark].to_i)
+  @msg = "do you want to delete this recipe from your bookmarks?"
+  erb :'/user/bookmarks'
+end
 
+# delete 'POST/user/bookmarks/delete'?
+delete "/user/bookmarks/:id" do
+  @del_bookmark = Bookmark.find(params[:id].to_i)
+  @del_bookmark.destroy
+  redirect "/user/bookmarks"
+end
 
  # @recipe.ingredients.collection_singular_ids = params[:ingredient].map {|x| x.to_i }

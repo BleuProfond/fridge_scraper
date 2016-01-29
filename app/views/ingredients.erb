@@ -5,14 +5,14 @@
 
 <% ingredients = Ingredient.all %>
   
-
+<ul>
 <form method='get' action="/results">
   <% ingredients.each do |ingredient| %>
-    <span>
+    <li>
       <div>
         <input type="checkbox" name="ingredient[]" value="<%= ingredient.id %>" id="<%= ingredient.id %>"><label for="<%= ingredient.id %>"><%= ingredient.ingredient_name %></label><br>
       </div>
-    </span>
+    </li>
   <% end %>
   <input type="submit" value="Search"><br>
 </form>

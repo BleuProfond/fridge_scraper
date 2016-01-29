@@ -1,0 +1,9 @@
+<h1 class="bookmark_title"> Your Bookmarks!</h1>
+
+<% @user.bookmarks.each do |bookmark| %>
+  <div>
+    <% recipe = Recipe.find(bookmark.recipe_id) %>
+    <p><a href="/recipe/<%= recipe.id %>"><%= recipe.recipe_name %></a></p>
+  </div>
+  <hr>
+<% end %>

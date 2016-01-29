@@ -3,7 +3,7 @@
 
 <% if current_user %>
   <p>Welcome <%= current_user.email %>! Would you like to see your <a href="/user/bookmarks">Bookmarks</a>?</p>
-  <p>dont forget to <a href="/users/logout">Logout</a>!</p>
+  <p>dont forget to <a href="/user/logout">Logout</a>!</p>
 <% else %>
   <p><a href="/user/new"> Sign up</a> or <a href="/user/login">Login</a> to gain access to some benefits!
 <% end %>

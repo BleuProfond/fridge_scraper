@@ -20,9 +20,6 @@ get '/ingredients' do
   erb :'ingredients'
 end
 
-get '/user/bookmarks' do
-  erb :'/user/bookmarks'
-end
 get '/recipe/:id' do
   @recipe = Recipe.find(params[:id])
   erb :'/recipe'
@@ -41,6 +38,7 @@ get '/results' do
   erb :'/search_result'
 end
 
+#new user
 get '/user/new' do 
   @user = User.new
   erb :'/user/new'
@@ -89,6 +87,23 @@ post '/user/add_ingredients' do
   )
   @ingredient.save
   redirect '/ingredients'
+end
+
+get '/user/bookmarks' do
+  @user = current_user
+  if @user
+    erb :'/user/bookmarks'
+  else 
+    session[:error] = 'msut be logged in to see your bookmarks'
+    redirect '/user/login'
+  end
+end
+
+post '/user/bookmarks/new' do
+  binding.pry
+  @user = current_user
+  @user.bookmarks << Bookmark.create(user_id: @user.id, recipe_id: params[:bookmark].to_i)
+  redirect '/user/bookmarks'
 end
 # post '/results' do
 #   erb :'search_result'

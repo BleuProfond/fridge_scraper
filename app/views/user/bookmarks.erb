@@ -5,6 +5,21 @@
     <% recipe = Recipe.find(bookmark.recipe_id) %>
     <p><a href="/recipe/<%= recipe.id %>"><%= recipe.recipe_name %></a></p>
   </div>
+  <div>
+    <% if @del_bookmark %>
+      <p><%= @msg %></p>
+      <form action="/user/bookmarks/<%= @del_bookmark.id %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete It!">
+        <a href="/user/bookmarks">Cancel</a>
+      </form>
+    <% else %>
+      <form action="/user/bookmarks/delete" method="get">
+        <input type="hidden" name="bookmark" value="<%= bookmark.id %>">
+        <input type="submit" value="Delete">
+      </form>
+    <% end %>
+  </div>
   <hr>
 <% end %>
 

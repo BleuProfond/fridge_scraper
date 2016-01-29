@@ -1,4 +1,16 @@
 <h1>Add your own ingredients</h1>
+
+<% if @ingredient && @ingredient.errors.any? %>
+  <div>
+    <strong>Some issue(s) with the ingredient.</strong>
+    <ul>
+      <% @ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <form method="post" action="/user/add_ingredients">
   <div>
     <label>Ingredient:</label>

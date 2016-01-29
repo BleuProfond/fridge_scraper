@@ -87,8 +87,12 @@ post '/user/add_ingredients' do
   @ingredient = Ingredient.new(
     ingredient_name: params[:ingredient_name]
   )
-  @ingredient.save
-  redirect '/ingredients'
+    if
+      @ingredient.save
+      redirect '/ingredients'
+    else
+      erb :'user/add_ingredients'
+    end
 end
 # post '/results' do
 #   erb :'search_result'

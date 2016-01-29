@@ -78,6 +78,18 @@ get '/user/logout' do
   session[:user_id] = nil
   redirect '/'
 end
+
+get '/user/add_ingredients' do
+  erb :'user/add_ingredients'
+end
+
+post '/user/add_ingredients' do
+  @ingredient = Ingredient.new(
+    ingredient_name: params[:ingredient_name]
+  )
+  @ingredient.save
+  redirect '/ingredients'
+end
 # post '/results' do
 #   erb :'search_result'
 # end

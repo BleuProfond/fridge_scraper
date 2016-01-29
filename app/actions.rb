@@ -78,7 +78,13 @@ get '/user/logout' do
 end
 
 get '/user/bookmarks' do
-  erb :'/user/bookmarks'
+  @user = current_user
+  if @user
+    erb :'/user/bookmarks'
+  else 
+    session[:error] = 'msut be logged in to see your bookmarks'
+    redirect '/user/login'
+  end
 end
 
 post '/user/bookmarks/new' do

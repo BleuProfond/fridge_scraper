@@ -56,6 +56,24 @@ post '/user' do
   end
 end
 
+# Login
+get '/user/login' do
+  erb :'/user/login'
+end
+
+post '/user/login' do
+  email = params[:email]
+  password = params[:password]
+  user = User.find_by(email: email, password: password)
+  if user
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    session.delete(:user_id)
+    redirect '/user/login'
+  end
+end
+
 get '/user/logout' do
   session[:user_id] = nil
   redirect '/'

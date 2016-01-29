@@ -64,6 +64,7 @@ post '/user/login' do
   password = params[:password]
   user = User.find_by(email: email, password: password)
   if user
+    session[:error] = nil
     session[:user_id] = user.id
     redirect '/'
   else
@@ -78,15 +79,23 @@ get '/user/logout' do
 end
 
 get '/user/add_ingredients' do
-  erb :'user/add_ingredients'
+  if current_user
+    erb :'user/add_ingredients'
+  else 
+    session[:error] = 'must be logged in to add ingredients'
+    redirect '/user/login'
+  end
 end
 
 post '/user/add_ingredients' do
   @ingredient = Ingredient.new(
     ingredient_name: params[:ingredient_name]
   )
-  @ingredient.save
-  redirect '/ingredients'
+  if @ingredient.save
+    redirect '/ingredients'
+  else
+    erb :'user/add_ingredients'
+  end
 end
 
 get '/user/bookmarks' do
@@ -94,7 +103,7 @@ get '/user/bookmarks' do
   if @user
     erb :'/user/bookmarks'
   else 
-    session[:error] = 'msut be logged in to see your bookmarks'
+    session[:error] = 'must be logged in to see your bookmarks'
     redirect '/user/login'
   end
 end

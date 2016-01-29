@@ -17,16 +17,12 @@ ingredients = [
   'tomato', 
   'spices', 
   'pork', 
-<<<<<<< Updated upstream
   'salad dressing',
   'butter',
   'vegtable broth',
   'sugar',
   'tomato paste',
   'mushroom'
-=======
-  'salad dressing'
->>>>>>> Stashed changes
 ]
 
 ingredients.each do |x|
@@ -34,7 +30,6 @@ ingredients.each do |x|
 end
 
 recipes = [
-<<<<<<< Updated upstream
   ['chicken salad', nil],
   ['spaghetti', 'http://allrecipes.com/recipe/11715/easy-spaghetti-with-tomato-sauce/'],
   ['chicken noodle soup', 'http://allrecipes.com/recipe/26460/quick-and-easy-chicken-noodle-soup/'],
@@ -130,15 +125,3 @@ User.create(email: 'example@example.com', password: '1234')
 #  IngredientRecipe.create( recipe_id:2, ingredient_id: 24)
 #  IngredientRecipe.create( recipe_id:2, ingredient_id: 15)
 #  IngredientRecipe.create( recipe_id:2, ingredient_id: 8)
-=======
-  'greek salad', 
-  'spaghetti', 
-  'chicken noodle soup', 
-  'sandwich', 
-  'vegtable dip'
-]
-
-recipes.each do |y|
-  Recipe.create(recipe_name: y)
-end
->>>>>>> Stashed changes

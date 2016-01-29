@@ -14,6 +14,13 @@
 <% end %>
 <h2>
 
+<% if current_user %>
+  <form method="post" action="/user/bookmarks/new">
+    <input type='hidden' value="<%= @recipe.id %>" name='bookmark'>
+    <input type='submit' value='bookmark'>
+  </form>
+<% end %> 
+
 <p><a href='/ingredients'>Back to ingredients list</a></p>
 
 

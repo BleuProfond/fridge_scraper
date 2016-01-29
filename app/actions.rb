@@ -62,12 +62,13 @@ end
 post '/user/login' do
   email = params[:email]
   password = params[:password]
-  user = User.find_by(email: email, password: password)
-  if user
+  @user = User.find_by(email: email, password: password)
+  if @user
     session[:error] = nil
-    session[:user_id] = user.id
+    session[:user_id] = @user.id
     redirect '/'
   else
+    session[:error] = 'wrong email or pasword'
     session.delete(:user_id)
     redirect '/user/login'
   end
@@ -109,7 +110,6 @@ get '/user/bookmarks' do
 end
 
 post '/user/bookmarks/new' do
-  binding.pry
   @user = current_user
   @user.bookmarks << Bookmark.create(user_id: @user.id, recipe_id: params[:bookmark].to_i)
   redirect '/user/bookmarks'

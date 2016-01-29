@@ -2,6 +2,17 @@
   <%= session[:error] %>
 <% end %>
 
+<% if @user && @user.errors.any? %>
+  <div>
+    <strong>Some issues with the signup. please fix them</strong>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>Login</h1>
 
 <form method="POST" action="/user/login">

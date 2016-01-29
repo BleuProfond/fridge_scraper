@@ -1,10 +1,22 @@
 <h1>Recipe results</h1>
- <% @recipes.each do |recipe| %>
 
-  <div class='results_tabs'>
-    <h3><a href="/recipe/<%= recipe.id %>"><%= recipe.recipe_name %></h3>
-  </div>
-  <hr>
+<% if @recipes.length > 0 %>
+  <% @recipes.each do |recipe| %>
+
+    <div class='results_tabs'>
+      <h3><a href="/recipe/<%= recipe.id %>"><%= recipe.recipe_name %></h3>
+    </div>
+    <hr>
+  <% end %>
+<% else %>
+  <p id="no_recipe_result"> oops! there are no recipes in the database that matches those ingredients. orz.</p>
+  <p>Why not order delivery or to go to the gorcery store.</p>
+  <% if current_user %>
+    <p>Why not <a href="/user/add_recipe">add a recipe</a>?</p>
+  <% else %>
+    <p>If you want to add more recipes, make an <a href="/user/new">account!</a></p>
+  <% end %>
 <% end %>
 
-<p><a href='/'>Back to Homepage</a></p>
+
+<p><a href='/'>Back to Homepage</a> or <a href='/ingredients'>Back to ingredients list</a></p>

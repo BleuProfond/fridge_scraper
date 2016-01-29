@@ -109,7 +109,6 @@ get '/user/bookmarks' do
 end
 
 post '/user/bookmarks/new' do
-  binding.pry
   @user = current_user
   @user.bookmarks << Bookmark.create(user_id: @user.id, recipe_id: params[:bookmark].to_i)
   redirect '/user/bookmarks'
